@@ -1,0 +1,278 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}	%Idioma
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx} %Añadir imágenes
+\usepackage{geometry}	%Ajustar márgenes
+\usepackage[export]{adjustbox}[2011/08/13]
+\usepackage{float}
+\restylefloat{table}
+\usepackage{hyperref}
+\usepackage{titling}
+%\usepackage{minted}
+%Opciones de encabezado y pie de página:
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+%\rhead{}
+\lfoot{Algorítmica}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%Opciones de fuente:
+\usepackage[utf8]{inputenc}
+\usepackage[default]{sourcesanspro}
+\usepackage{sourcecodepro}
+\usepackage[T1]{fontenc}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{15pt}
+\setlength{\voffset}{10mm}
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+\pretitle{%
+  \centering
+  \LARGE
+  \includegraphics[scale=0.5]{"/home/patchispatch/Documentos/Plantilla Latex UGR/logo".png}\\[\bigskipamount]
+}
+\posttitle{\begin{center} \end{center}}
+
+\author{	Juan Ocaña Valenzuela}
+\title{\textbf{Algorítmica: un resumen como cualquier otro} 
+ Advertencia: este resumen se basa en los contenidos del libro Lecciones de Algorítmica, de José Luis Verdegay}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\maketitle
+
+\begin{center}
+\url{https://github.com/patchispatch}
+\end{center}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{La eficiencia de los algoritmos}
+
+\subsection{Tema 1: Planteamiento general}
+
+En este tema trataremos conceptos generales, definiendo qué son las Ciencias de la Computación, el concepto de algoritmo, y la distinción entre problemas y casos. 
+
+\subsubsection{Definiciones iniciales}
+
+\begin{itemize}
+
+\item \textbf{Ciencia de la Computación:} La Ciencia de la Computación es el estudio de los Algoritmos, incluyendo sus propiedades, su hardware, sus aspectos lingüísticos y sus aplicaciones.
+
+\item \textbf{Algoritmo:} un algoritmo es una secuencia finita y ordenada de pasos, exentos de ambigüedad, tal que al llevarse a cabo con fidelidad, dará como resultado que se realice la tarea para la que se ha diseñado, con recursos limitados y tiempo finito.
+
+\smallskip
+
+Esta definición presenta una serie de problemas, como la definición de fidelidad, o lo que se considera como tiempo finito. 
+
+\medskip
+
+\textbf{Definición de Bazaara, Sheraly y Shetty:} un algoritmo es un proceso iterativo que genera una sucesión de puntos, conforme a un conjunto dado de instrucciones, y un criterio de parada.
+
+\bigskip
+
+Existen más definiciones, pero el autor de estos apuntes no considera que resulten relevantes como para ponerlas aquí.
+
+\textit{\textbf{Nota:} Algoritmo y programa son conceptos diferentes. Un programa es una serie de instrucciones codificadas en un lenguaje de programación, que expresa un algoritmo y que puede ser ejecutado en un computador.}
+\end{itemize}
+
+\subsubsection{Características primordiales de un algoritmo}
+
+Un algoritmo debe poseer las siguientes cinco características:
+
+\begin{enumerate}
+\item \textbf{Finitud:} ha de terminar después de un tiempo acotado superiormente.
+
+\item \textbf{Especificidad:} cada etapa debe estar rigurosamente definida y especificada para cada caso.
+
+\item \textbf{Input:} un algoritmo tiene una o más entradas o \textit{inputs}.
+
+\item \textbf{Output:} un algoritmo tiene una o más salidas u \textit{outputs}.
+
+\item \textbf{Efectividad:} todas las operaciones a realizar deben ser tan básicas como para ser resueltas en un periodo de tiempo finito usando lápiz y papel.
+
+\textit{\textbf{Nota:} esta última característica pierde el sentido en cuanto el algoritmo se concibe para ser utilizado en computadores. Podría entenderse como <<utilizar operaciones que puedan ser resueltas en un tiempo razonable>>.}
+\end{enumerate}
+
+
+\subsubsection{La Algorítmica}
+
+Hemos visto qué es un algoritmo y cuáles son sus propiedades, pero, ¿existe alguna rama de las Ciencias de la Computación dedicada a su estudio? Por supuesto; si no, no estarías dedicando tu tiempo a leer este resumen. Como pone encima de este párrafo, la \textbf{Algorítmica} o Teoría de Algoritmos es la rama dedicada a las siguientes tareas relacionadas con los algoritmos:
+
+\begin{enumerate}
+\item La construcción.
+\item La expresión.
+\item La validación.
+\item El análisis.
+\item El testeo.
+\end{enumerate}
+
+A continuación, explicaremos en qué consiste cada uno de estos pasos.
+
+\begin{itemize}
+\item \textbf{Construcción}
+
+El área de la construcción de algoritmos engloba el estudio de los métodos que, facilitando esta tarea, se han demostrado más útiles en la práctica.
+
+\item \textbf{Expresión}
+
+Los algoritmos han de tener una expresión lo más clara y concisa posible.
+
+\item \textbf{Validación}
+
+Una vez construido el algoritmo, se debe demostrar que realiza su tarea correctamente sobre inputs \textit{legales}. Este proceso se conoce como validación, y pretende asegurar  que el algoritmo trabajará sin problemas independientemente del lenguaje empleado, o la tecnología usada.
+
+Una vez validado el algoritmo, puede utilizarse para escribir un programa, por ejemplo.
+
+\item \textbf{Análisis}
+
+Es el proceso de determinar cuánto tiempo de cálculo y almacenamiento consumirá un algoritmo. Esto nos permite comparar algoritmos entre sí, y decidir cuál es mejor para realizar una determinada tarea.
+
+\item \textbf{Test}
+
+El test se realiza sobre un programa que implementa un algoritmo. Supone la corrección de errores detectados, y la comprobación de tiempo y espacio para la ejecución del mismo.
+
+\end{itemize}
+
+\newpage
+
+\subsubsection{Elección de un algoritmo}
+
+Ahora que disponemos de nuestros algoritmos diseñados, validados y analizados, es hora de utilizarlos para resolver nuestro problema. Pero, ¿cuál utilizamos? ¿Qué algoritmo podrá garantizarnos un mejor resultado? A veces es muy fácil, pues sólo hay una opción posible, pero no suele ser el caso. 
+
+Lo que debemos hacer es determinar ciertas características de cada algoritmo  para evaluar su rendimiento. Algunos posibles criterios son los siguientes:
+
+\begin{itemize}
+\item Adaptabilidad del algoritmo a computadores.
+\item Simplicidad y elegancia.
+\item Coste económico de su implementación.
+\item Tiempo de ejecución del algoritmo.
+\end{itemize}
+
+Dependiendo de las características del problema a resolver, compararemos los diferentes algoritmos según las características que más nos interesen.
+
+\subsubsection{Problemas y casos}
+
+Es muy sencillo entender la diferencia entre \textbf{problema} y \textbf{caso} con un ejemplo:
+
+\medskip
+
+\textbf{Problema:} la multiplicación de dos números.
+
+\textbf{Caso del problema:} multiplicar 14 por 25. 
+
+\medskip
+
+Un algoritmo debe funcionar correctamente en todos sus posibles casos. En caso de que tan sólo uno de ellos fuese incorrecto, el algoritmo no sería válido.
+
+\medskip
+
+El \textbf{tamaño de un caso} es cualquier entero que, de un modo u otro, nos indique el número de componentes del caso. 
+
+\medskip
+
+Ejemplos:
+
+\textbf{Ordenación de un array:} tamaño del array.
+
+\textbf{Operaciones con matrices:} número de filas y columnas.
+
+\bigskip
+
+El tiempo consumido por el mismo algoritmo puede ser muy diferente entre dos casos diferentes del mismo tamaño. Usemos como ejemplo la inserción de un elemento en un vector de forma ordenada. 
+
+\medskip
+
+Si tenemos un caso \textbf{U} en el que el vector ya se encuentra ordenado ascendentemente, y un caso \textbf{V} en el que lo está pero de forma descendente, la inserción de un valor en U será mucho más rápida que en V para un tamaño de, por ejemplo, 5000 elementos. 
+
+\medskip
+
+V describe el \textbf{peor caso} de este algoritmo, mientras que U es el \textbf{mejor caso}. 
+
+\medskip
+
+El \textbf{peor caso} es útil cuando necesitamos una garantía total acerca del tiempo de ejecución de un programa. \textbf{Generalmente utilizaremos este.}
+
+\medskip
+
+El \textbf{mejor caso} es el caso en el que el algoritmo tarda menos tiempo.
+
+\medskip
+
+También podemos considerar el \textbf{caso promedio}, aunque no suele tenerse en cuenta. Se trata del número medio de etapas en cualquier caso de tamaño \textit{n}.
+
+\newpage
+
+\subsection{Tema 2: Tiempo de ejecución. Notaciones para la eficiencia de los algoritmos}
+
+En este tema vamos a ver cómo calcular y expresar la eficiencia de un algoritmo, y las diferentes notaciones que podemos utilizar para ello. 
+
+\subsubsection{La eficiencia de los algoritmos}
+
+¿Cómo podríamos expresar la eficiencia de un algoritmo? ¿En qué unidad? Antes de responder a estas cuestiones, necesitamos calcularla. Para ello, disponemos de tres métodos:
+
+\begin{itemize}
+\item \textbf{El enfoque empírico (a posteriori):} probar el algoritmo y medir sus resultados. Depende del agente tecnológico que usemos.
+
+\item \textbf{El enfoque teórico (a priori):} no depende del agente tecnoĺógico, sino de cálculos matemáticos.
+
+\item \textbf{El enfoque híbrido: } la forma de la función que describe el algoritmo se calcula de forma teórica, y cualquier parámetro numérico que se necesite se determinará empíricamente sobre un programa y una máquina particulares.
+ 
+\end{itemize}
+
+\medskip
+
+Para seleccionar la unidad con la que medir la eficiencia de un algoritmo, debemos tener en cuenta el \textbf{Principio de Invarianza:}
+
+\medskip
+
+\textit{Dos implementaciones diferentes de un mismo algoritmo no difieren en eficiencia más que, a lo sumo, en una constante multiplicativa.}
+
+\medskip
+
+Por tanto, si dos implementaciones consumen $t_1(n)$ y $t_2(n)$ unidades de tiempo, respectivamente, siempre existe una constante positiva c tal que $t_1(n) \leq t_2(n)$.
+
+Este principio es independiente del agente tecnológico usado.
+
+\medskip
+
+Teniendo esto en cuenta, parece oportuno referirnos a la eficiencia de un algoritmo en términos de tiempo. 
+
+El tiempo de ejecución de un programa depende de:
+
+\begin{itemize}
+\item El input.
+\item La calidad del código generado por el compilador.
+\item La naturaleza y velocidad de las instrucciones utilizadas.
+\item La complejidad en tiempo del algoritmo utilizado.
+\end{itemize}
+
+$T(n)$ notará el tiempo de ejecución de un programa para un input de tamaño n, y también el del algoritmo en el que se basa.
+
+\newpage
+
+
+
+
+\end{document}
