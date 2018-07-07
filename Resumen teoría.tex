@@ -50,7 +50,7 @@
 
 \author{	Juan Ocaña Valenzuela}
 \title{\textbf{Algorítmica: un resumen como cualquier otro} 
- Advertencia: este resumen se basa en los contenidos del libro Lecciones de Algorítmica, de José Luis Verdegay}
+ Advertencia: este resumen se encuentra en desarrollo. Bienvenidas son las modificaciones y sugerencias.}
 
 \begin{document}
 
@@ -237,7 +237,7 @@ En este tema vamos a ver cómo calcular y expresar la eficiencia de un algoritmo
 
 \item \textbf{El enfoque teórico (a priori):} no depende del agente tecnoĺógico, sino de cálculos matemáticos.
 
-\item \textbf{El enfoque híbrido: } la forma de la función que describe el algoritmo se calcula de forma teórica, y cualquier parámetro numérico que se necesite se determinará empíricamente sobre un programa y una máquina particulares.
+\item \textbf{El enfoque híbrido: } la forma de la función que describe el algoritmo se calcula de forma teórica, y cualquier parámetro numérico que se necesite se determinará de forma empírica sobre un programa y una máquina en concreto.
  
 \end{itemize}
 
@@ -268,9 +268,87 @@ El tiempo de ejecución de un programa depende de:
 \item La complejidad en tiempo del algoritmo utilizado.
 \end{itemize}
 
-$T(n)$ notará el tiempo de ejecución de un programa para un input de tamaño n, y también el del algoritmo en el que se basa.
+$T(n)$ notará el tiempo de ejecución de un programa para un input de tamaño n, y también el del algoritmo que implementa.
 
 \newpage
+
+Expresaremos el tiempo que consume un algoritmo como $t(n)$ si existe una constante positiva $c$ y una implementación del algoritmo cuyo tiempo de ejecución esté acotado superiormente por $ct(n)$ segundos.
+
+En la constante $c$ acumularemos todos los factores relativos a la máquina utilizada. La llamaremos \textbf{constante oculta}.
+
+\medskip
+
+\subsubsection{Notación asintótica $O, \Omega, \Theta$}
+
+Aún así, necesitamos una notación que nos permita comparar algoritmos en términos iguales. Supongamos un algoritmo con dos implementaciones, una que tarde $n^{2}$ días en resolver un caso de tamaño n, y otra que lo haga en $n^{3}$ segundos. Para casos muy grandes, el algoritmo cuadrático puede ser más rápido, pero en general, el cúbico nos proporcionará mejores resultados. Algo falla, ¿no?
+
+\medskip
+
+Para poder realizar esta comparación, se utiliza la \textbf{notación asintótica}, que refleja la conducta de las funciones para valores altos de $x$.
+
+\subsubsection*{Notación $O$ (la importante)}
+
+Una función $f(n)$ está asintóticamente dominada por $g(n)$ si al multiplicar una constante por $g(n)$ obtenemos valores mayores que $f(n)$ para valores de n mayores que una constante k.
+
+O con otras palabras, f es de orden g, $O(g(n))$, si pasado un valor positivo k, f es menor o igual que un múltiplo de g.
+
+\medskip
+
+La notación O supone usar el término más dominante, por ejemplo:
+
+$$3x^{3} + 2x^{2} + 4 = O(x^{3})$$
+
+Aunque el polinomio también esté acotado superiormente por $n^{4}$ y superiores, nos quedamos con $O(n^{3})$.
+
+\subsubsection*{Uso de límites en notación $O$}
+
+Para demostrar que $f(n)$ es de orden $O(g(n))$, tan sólo debemos comprobar si existe límite cuando $n\rightarrow \infty$ de $|f(n)/g(n)|$
+
+
+\subsubsection*{Notación $\Omega$}
+
+$\Omega$ es justo lo contrario de $O$:
+
+$$f(n) = \Omega(g(n)) \leftrightarrow g(n) = O(f(n))$$
+
+\subsubsection*{Notación $\Theta$}
+
+El \textit{orden exacto} o $\Theta$ indica que las funciones se dominan asintóticamente entre sí, es decir, son equivalentes:
+
+$$f(n) = \Theta(g(n)) \leftrightarrow f(n) = O(g(n)) \wedge f(n) = \Omega(g(n))$$
+
+\subsubsection*{Tasa de crecimiento}
+
+Si un algoritmo está acotado por $O(f(n))$, f(n) es su \textbf{tasa de crecimiento}. Teóricamente, un algoritmo con una tasa cuadrática es mejor que otro con una tasa cúbica, pero es posible que en la implementación, con ciertas combinaciones, el segundo algoritmo produzca mejores resultados de tiempo. Esto depende del tamaño de los inputs. 
+
+\subsubsection{Notación asintótica de Brassard y Bratley}
+
+Sea $f:N \rightarrow R*$ una función arbitraria.
+
+\subsubsection*{Notación $0$}
+
+$$O(f(n)) = {t:N \rightarrow R* / \exists c \in R^{+}, \exists n_{0} \in N : \forall n \geq  n_{0} \Rightarrow t(n) \leq cf(n)}$$
+
+O lo que es lo mismo, una función es de orden f(n) si existe una constante real positiva $c$ y un valor natural $n_{0}$ que cumplan que para todo valor mayor a $n_{0}$, $t(n) \leq f(n)$.
+
+
+\subsubsection*{Notación $\Omega$}
+
+$$\Omega(f(n)) = {t:N \rightarrow R* / \exists c \in R^{+}, \exists n_{0} \in N : \forall n \geq  n_{0} \Rightarrow t(n) \geq cf(n)}$$
+
+Una función es de orden f(n) si existe una constante real positiva $c$ y un valor natural $n_{0}$ que cumplan que para todo valor mayor a $n_{0}$, $t(n) \geq f(n)$. Lo contrario a la notación $O$, como vimos antes.
+
+\subsubsection*{Notación $\Theta$}
+
+$$\Theta(f(n)) = O(f(n)) \cap \Omega(f(n))$$
+
+Con también mencionamos antes, el orden exacto se cumple cuando ambas funciones se acotan superiormente entre sí, y por tanto, son equivalentes.
+
+\bigskip
+
+\textit{\textbf{Nota:} la condición $\exists n_{0} \in N : \forall n \geq n_{0}$ puede evitarse.}
+
+
 
 
 
